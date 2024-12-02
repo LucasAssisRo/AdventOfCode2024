@@ -5,12 +5,19 @@
 //  Created by Lucas Assis Rodrigues on 12/1/24.
 //
 
-let day = 1
+let day = 2
 let partOne = false
 
-let result = switch day {
-case 1: "\(partOne ? Day01.part1() : Day01.part2())"
-default: "Invalid day"
+let result: (any Day.Type)! = switch day {
+case 1: Day01.self
+case 2: Day02.self
+default: nil
 }
 
-print(result)
+
+print(partOne ? result.partOne() : result.partTwo())
+
+protocol Day {
+    static func partOne() -> Any
+    static func partTwo() -> Any
+}
